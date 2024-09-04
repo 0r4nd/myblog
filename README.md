@@ -1,12 +1,12 @@
-# myblog
+# Myblog
 
-## creation
-- yarn create react-app .
+## Source code for my blog:
 
-## packages
-- yarn add react-router-dom
-- yarn add react-quill
-- yarn add quill-image-resize-module-react
-- yarn add quill-emoji
-- yarn add highlight.js
-- yarn add date-fns
+- Frontend: (React⚛) with js
+- Backend: (Uvicorn﻿🦄﻿) + (FastAPI﻿⚡﻿)
+- DB: (Postgres ﻿🐘﻿) + (Psycopg3 🖧)
+
+## Ports
+- Frontend: 3000
+- Backend: 8000
+- DB: 5432
