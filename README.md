@@ -1,5 +1,5 @@
 # Myblog
-### <a href="www.tensormaker.org/">www.tensormaker.org</a>
+### [www.tensormaker.org](http://www.tensormaker.org)
 
 ## Source code for my blog:
 
