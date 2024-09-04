@@ -1,0 +1,7 @@
+
+fastapi==0.112.0
+uvicorn[standart]==0.30.0
+psycopg[binary]==3.2.1
+python-dotenv==1.0.0
+passlib==1.7.4
+pyjwt==2.9.0
