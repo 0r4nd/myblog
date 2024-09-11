@@ -10,3 +10,7 @@ venv.bak/
 
 
 static/
+
+# python
+ __pycache__/
+ *.pyc
