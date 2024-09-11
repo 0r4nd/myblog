@@ -1,0 +1,243 @@
+
+
+.navBar {
+  display: flex;
+  padding: 10px 20px;
+  justify-content: space-between;
+  align-items: center;
+
+  /* min-height: 70px; */
+  width: 100%;
+  /* border: solid 1px #f00; */
+  /* overflow: hidden; */
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  font-weight: bold;
+  font-size: 1.5rem;
+  /* border: solid 1px #fff; */
+}
+
+.navMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  list-style-type: none;
+  margin-left: auto;
+  /* border: solid 1px #fff; */
+
+}
+
+.navLink {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #2b2a33;
+}
+.navLink:hover {
+  color: #439eff;
+}
+
+
+
+/* https://css-tricks.com/how-to-create-neon-text-with-css/ */
+.neon-blue {
+  font-family: Neon Robot, Arial, serif;
+  color: #fff;
+  text-shadow:
+      0 0 7px var(--neon-blue-color1),
+      0 0 10px var(--neon-blue-color1),
+      0 0 21px var(--neon-blue-color1),
+      0 0 42px var(--neon-blue-color2),
+      0 0 82px var(--neon-blue-color2),
+      0 0 92px var(--neon-blue-color2),
+      0 0 102px var(--neon-blue-color2),
+      0 0 151px var(--neon-blue-color2);
+  animation: pulsate-blue 1.5s infinite alternate;
+  /* clip-path: inset(-100px -100px -100px -100px); */
+}
+.neon-yellow {
+  font-family: Neon Robot, Arial, serif;
+  color: #fff;
+  text-shadow:
+      0 0 7px var(--neon-yellow-color1),
+      0 0 10px var(--neon-yellow-color1),
+      0 0 21px var(--neon-yellow-color1),
+      0 0 42px var(--neon-yellow-color2),
+      0 0 82px var(--neon-yellow-color2),
+      0 0 92px var(--neon-yellow-color2),
+      0 0 102px var(--neon-yellow-color2),
+      0 0 151px var(--neon-yellow-color2);
+  animation: pulsate-yellow 1.5s infinite alternate;
+  /* clip-path: inset(-100px -100px -100px 0px); */
+}
+
+.neon-off {
+  font-family: Neon Robot, Arial, serif;
+  color: #2b2a33;
+  text-shadow: none;
+}
+@keyframes pulsate-blue {
+  0% {
+    text-shadow:
+      0 0 2px var(--neon-blue-color1),
+      0 0 4px var(--neon-blue-color1),
+      0 0 6px var(--neon-blue-color1),
+      0 0 10px var(--neon-blue-color2),
+      0 0 45px var(--neon-blue-color2),
+      0 0 55px var(--neon-blue-color2),
+      0 0 70px var(--neon-blue-color2),
+      0 0 80px var(--neon-blue-color2);
+    }
+  100% {
+    text-shadow:
+      0 0 4px var(--neon-blue-color1),
+      0 0 11px var(--neon-blue-color1),
+      0 0 19px var(--neon-blue-color1),
+      0 0 40px var(--neon-blue-color2),
+      0 0 80px var(--neon-blue-color2),
+      0 0 90px var(--neon-blue-color2),
+      0 0 100px var(--neon-blue-color2),
+      0 0 150px var(--neon-blue-color2);
+  }
+}
+@keyframes pulsate-yellow {
+  0% {
+    text-shadow:
+      0 0 2px var(--neon-yellow-color1),
+      0 0 4px var(--neon-yellow-color1),
+      0 0 6px var(--neon-yellow-color1),
+      0 0 10px var(--neon-yellow-color2),
+      0 0 45px var(--neon-yellow-color2),
+      0 0 55px var(--neon-yellow-color2),
+      0 0 70px var(--neon-yellow-color2),
+      0 0 80px var(--neon-yellow-color2);
+    }
+  100% {
+    text-shadow:
+      0 0 4px var(--neon-yellow-color1),
+      0 0 11px var(--neon-yellow-color1),
+      0 0 19px var(--neon-yellow-color1),
+      0 0 40px var(--neon-yellow-color2),
+      0 0 80px var(--neon-yellow-color2),
+      0 0 90px var(--neon-yellow-color2),
+      0 0 100px var(--neon-yellow-color2),
+      0 0 150px var(--neon-yellow-color2);
+  }
+}
+
+
+
+/* Flickering animation */
+@keyframes flicker-blue {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow:
+      0 0 4px var(--neon-blue-color1),
+      0 0 11px var(--neon-blue-color1),
+      0 0 19px var(--neon-blue-color1),
+      0 0 40px var(--neon-blue-color2),
+      0 0 80px var(--neon-blue-color2),
+      0 0 90px var(--neon-blue-color2),
+      0 0 100px var(--neon-blue-color2),
+      0 0 150px var(--neon-blue-color2);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+@keyframes flicker-yellow {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow:
+      0 0 4px var(--neon-yellow-color1),
+      0 0 11px var(--neon-yellow-color1),
+      0 0 19px var(--neon-yellow-color1),
+      0 0 40px var(--neon-yellow-color2),
+      0 0 80px var(--neon-yellow-color2),
+      0 0 90px var(--neon-yellow-color2),
+      0 0 100px var(--neon-yellow-color2),
+      0 0 150px var(--neon-yellow-color2);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+
+@media screen and (width <= 768px) {
+  .navbar {
+    padding-top: 0px;
+  }
+}
+
+@media screen and (width <= 630px) {
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .bar {
+    background-color: #ffffff;
+    width: 20px;
+    height: 3px;
+    display: block;
+    margin: 5px;
+    transition: 0.3s ease-in-out;
+  }
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .navMenu {
+    position: absolute;
+    flex-direction: column;
+    gap: 0;
+
+    top: calc(100% - 15px);
+
+    left: 200%;
+    text-align: start;
+    width: 33%;
+    bottom: auto;
+    display:none;
+
+    /* height: 100%; */
+    /* transition: 0.7s ease-in-out; */
+    background-color: #2b2a33;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px #888;
+    z-index: 2;
+  }
+
+  .navMenu.active {
+    left: 66%;
+    display: block;
+  }
+
+  .navMenu li {
+    margin: 16px 0;
+  }
+}
+
+@media screen and (width <= 512px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (width <= 400px) {
+  .navbar {
+    padding: 0px 0px;
+  }
+  .logo {
+    font-size: 1.0rem;
+  }
+}

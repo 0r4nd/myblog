@@ -1,0 +1,32 @@
+
+
+div.login, div.signup {
+  max-width: 400px;
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 30px;
+  background-color: #2b2a33;
+  animation-duration: 400ms;
+  animation-name: translate;
+  animation-timing-function: ease-in-out;
+}
+form.login, form.signup {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.login input[type="text"],
+.login input[type="password"],
+.signup input[type="text"],
+.signup input[type="password"] {
+  max-width: 80%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  color:#000;
+}
+
+form.login h1, form.signup h1 {
+  text-align: center;
+}
