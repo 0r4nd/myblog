@@ -9,7 +9,7 @@ load_dotenv(dotenv_path=env_path)
 
 
 class DataBaseConfig:
-    PROJECT_NAME = os.getenv("PROJECT_TITLE")
+    PROJECT_NAME = "test"
     PROJECT_VERSION = "1.0.0"
     POSTGRES_USER = os.getenv("POSTGRES_USER")
     POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")

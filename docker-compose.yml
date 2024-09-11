@@ -1,6 +1,7 @@
 
 services:
 
+
   db:
     image: postgres:${POSTGRES_VERSION}
     restart: unless-stopped
@@ -16,40 +17,37 @@ services:
       POSTGRES_INITDB_ARGS: ${POSTGRES_INITDB_ARGS}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
-      interval: 10s
+      interval: 3s
       timeout: 5s
       retries: 5
+      start_period: 5s
 
-  pgadmin:
-    image: dpage/pgadmin4:${PGADMIN_VERSION}
-    restart: unless-stopped
-    ports:
-      - 8001:80
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    volumes:
-      - pgadmin:/var/lib/pgadmin/
-    depends_on:
-      db:
-        condition: service_healthy
-
+  #mailhog:
+  #  image: mailhog/mailhog
+  #  restart: unless-stopped
+  #  logging:
+  #    driver: 'none'
+  #  ports:
+  #    - 1025:1025
+  #    - 8025:8025
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: uvicorn backend.app.main:app --reload --proxy-headers --log-level debug --host 0.0.0.0 --port 8000
+    command: uvicorn backend.app.main:app --forwarded-allow-ips '*' --reload --proxy-headers --log-level debug --host 0.0.0.0 --port 8000
     restart: unless-stopped
     volumes:
       - .:/app
     ports:
       - ${BACKEND_PORT}:${BACKEND_PORT_INTERNAL}
     depends_on:
+      #mailhog:
       db:
         condition: service_healthy
     environment:
       - WATCHFILES_FORCE_POLLING=true # live-reload for backend
+
 
   frontend:
     build:
@@ -68,22 +66,42 @@ services:
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true # live-reload for frontend
+      - API_URL=${API_URL}
 
-  #nginx:
-  #  image: nginx:1.27-alpine
-  #  restart: unless-stopped
-  #  volumes:
-  #    - ./static:/var/www/static
-  #    #- ./nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf
-  #    #- ./nginx/nginx.conf:/etc/nginx/nginx.conf
-  #    #- ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-  #    #- ./nginx/html:/var/www/html
-  #    - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
-  #  ports:
-  #    - 8080:80   # http
-  #    - 443:443 # https
-  #  depends_on:
-  #    - frontend
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    volumes:
+      - ./proxy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro # old
+      #- ./proxy/nginx/default.conf:/etc/nginx/templates/default.conf.template
+      #- ./proxy/nginx/log:/var/log/nginx
+      #- ./proxy/ssl/:/etc/ssl/:ro # unused for now
+      #- ./static:/var/www/static
+    ports:
+      - 80:80   # http
+      - 443:443 # https
+    depends_on:
+      - frontend
+    environment:
+        # env for nginx: https://stackoverflow.com/a/62844707
+        #NGINX_ENVSUBST_TEMPLATE_SUFFIX: ".conf"
+        API_URL: ${API_URL}
+
+
+  pgadmin:
+    image: dpage/pgadmin4:${PGADMIN_VERSION}
+    restart: unless-stopped
+    ports:
+      - 8001:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - pgadmin:/var/lib/pgadmin/
+    depends_on:
+      db:
+        condition: service_healthy
+
 
 volumes:
   pgdata:

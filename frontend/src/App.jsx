@@ -1,22 +1,32 @@
 
 import './assets/App.css';
-import Layout from './layouts/Layout.jsx';
-import IndexPage from './pages/IndexPage.jsx';
+import Layout from './components/Layout.jsx';
+import HomePage from './pages/HomePage.jsx';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import CreatePost from './pages/CreatePost.jsx';
 import PostPage from './pages/PostPage.jsx';
+import ToolPage from './pages/ToolPage.jsx';
+import APIPage from './pages/APIPage.jsx';
+
+import { Navigate } from 'react-router-dom';
 
 function App() {
+
   return (
     <Routes>
       <Route path='/' element = {<Layout />}>
-        <Route index element = { <IndexPage /> }/>
+        {/* <Route index element = { <HomePage /> }/> */}
+        <Route path='/' element = { <Navigate to="/blog" /> }/>
+        <Route path='/blog' element = { <HomePage /> }/>
+        <Route path='/tools' element = { <ToolPage /> }/>
+        <Route path='/api' element = { <APIPage /> }/>
+
         <Route path='/login' element = { <LoginPage /> }/>
         <Route path='/signup' element = { <SignupPage /> }/>
-        <Route path='/create' element = { <CreatePost /> }/>
-        <Route path='/posts/:id' element = { <PostPage /> }/>
+        <Route path='/blog/create' element = { <CreatePost /> }/>
+        <Route path='/blog/posts/:id' element = { <PostPage /> }/>
       </Route>
     </Routes>
   );

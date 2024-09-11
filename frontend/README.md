@@ -8,3 +8,4 @@
 - yarn add quill-emoji
 - yarn add highlight.js
 - yarn add date-fns
+- yarn add @types/react-icons

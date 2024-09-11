@@ -3,7 +3,7 @@
 import jwt
 from jwt.exceptions import InvalidTokenError
 
-from passlib import pwd
+import random
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
@@ -36,6 +36,12 @@ class Auth:
         self.refresh_secret_key = os.getenv("JWT_REFRESH_SECRET_KEY")
         self.encode_algorithm = os.getenv("JWT_ENCODE_ALGORITHM")
 
+    @staticmethod
+    def random_md5(length=32):
+        pool = "abcdefghijklmnopqrstuvwxyz"
+        pool += pool.upper() + "0123456789"
+        return ''.join(random.choice(pool) for i in range(length))
+
     def get_password_hash(self, password):
         return self.context.hash(password + self.pepper)
 
@@ -43,7 +49,7 @@ class Auth:
         return self.context.verify(password + self.pepper, hashed_password)
 
     def create_activation_key(self):
-        return pwd.genword(length=32)
+        return Auth.random_md5()
 
     def create_access_token(self, data:dict, expires_delta = 0):
         to_encode = data.copy()

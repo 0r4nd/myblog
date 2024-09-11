@@ -29,41 +29,78 @@ logger.setLevel(logging.DEBUG)
 
 # FastAPI, DataBase, authentification instances
 app = FastAPI(
-    title=os.getenv("PROJECT_TITLE",""),
-    description=os.getenv("PROJECT_DESCRIPTION","")
+    title=os.getenv("API_TITLE",""),
+    description=os.getenv("API_DESCRIPTION","")
 )
 db = DataBase()
 auth = Auth()
 
 
-
-# Static directories
-#app.mount("/static", StaticFiles(directory="static"), name="static")
-#app.mount("/app/posts/images", StaticFiles(directory="../static/posts/images"), name="posts/images")
-
-
-# Allows Cross-Origin Requests
+origins = ["*"]
 #origins = [
 #    "http://localhost:3000",
 #    "http://127.0.0.1:3000",
+#    "https://localhost:3000",
+#    "https://127.0.0.1:3000",
+#    os.getenv("API_HOST")+":3000",
+#    "https://"+os.getenv("API_HOST")+":3000",
 #]
-origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["DELETE", "GET", "POST", "PUT"],
-    allow_headers=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 
 
-
 @app.get('/')
-async def index():
+async def read_root():
     #logger.debug(DataBase.CONFIG.DATABASE_URL)
     #logger.debug(raw_sql_query("SELECT * FROM posts;"))
-    return {'db': db.CONFIG.DATABASE_URL}
+    return Response("Server is running.")
+
+
+@app.get('/blog/api')
+async def blog_api():
+    return Response("Blog API Server is running.")
+
+@app.get('/blog/api/posts')
+async def get_blog_api_posts():
+    query = """
+    SELECT posts.id, title, cover, category, summary, published_at, username
+    FROM posts
+    LEFT JOIN users ON (users.id = posts.user_id)
+    WHERE is_published = true
+    ORDER BY published_at DESC
+    """
+    try:
+        result = db.get(query)
+    except:
+        raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
+    return result
+
+@app.get('/blog/api/posts/{id}')
+async def get_blog_api_posts_id(id:str):
+    query = """
+    SELECT posts.id, title, cover, category, summary, content, published_at, updated_at, username
+    FROM posts
+    LEFT JOIN users ON (users.id = posts.user_id)
+    WHERE posts.id = %s
+    ORDER BY published_at DESC
+    """
+    try:
+        result = db.getone(query, id)
+    except:
+        raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
+    return result
+
+
+
+
+
+
 
 
 def get_user_in_db(auth, username, password):
@@ -157,10 +194,10 @@ async def post_signup(schema: SchemaUserCreate):
     return schema
 
 
-@app.get('/posts', status_code = status.HTTP_200_OK)
+@app.get('/blog/posts', status_code = status.HTTP_200_OK)
 async def get_posts():
     query = """
-    SELECT posts.id, title, cover, summary, published_at, username
+    SELECT posts.id, title, cover, category, summary, published_at, username
     FROM posts
     LEFT JOIN users ON (users.id = posts.user_id)
     WHERE is_published = true
@@ -172,10 +209,12 @@ async def get_posts():
         raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
     return result
 
-@app.get('/posts/{id}')
+
+
+@app.get('/blog/posts/{id}')
 async def get_posts_id(id:str):
     query = """
-    SELECT posts.id, title, cover, summary, content, published_at, updated_at, username
+    SELECT posts.id, title, cover, category, summary, content, published_at, updated_at, username
     FROM posts
     LEFT JOIN users ON (users.id = posts.user_id)
     WHERE posts.id = %s
@@ -183,6 +222,23 @@ async def get_posts_id(id:str):
     """
     try:
         result = db.getone(query, id)
+    except:
+        raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
+
+    return result
+
+
+@app.get('/blog/categories/{user_id}')
+async def get_categories_id(user_id:str):
+    query = """
+    SELECT ARRAY(
+	    SELECT title FROM post_category
+	    LEFT JOIN category ON (category.id = post_category.category_id)
+	    WHERE post_id = %s
+    )
+    """
+    try:
+        result = db.fetchone(query, user_id)[0]
     except:
         raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
     return result
