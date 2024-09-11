@@ -18,32 +18,14 @@
 
 body {
   background-color: #050505;
-  background: linear-gradient(0.25turn, #050505FF, #050505bb, #050505FF), url(./images/dark-bricks.webp);
+  background: linear-gradient(0.25turn, #050505FF, #050505bb, #050505FF),
+              url(./images/dark-bricks.webp);
   padding-left: calc(100vw - 100%);
-  /*position: relative;
-  left: calc((100vw - 100%) / 2);*/
 }
 
 img {
   max-width: 100%;
 }
-/*
-main {
-  padding: 10px;
-  max-width: 768px;
-   margin-left:auto;
-    margin-right:auto;
-}
-
-main {
-  --width-screen: 100%;
-  --width-child: 768px;
-  max-width: var(--width-child);
-  margin-left: calc(var(--width-screen)/2 - var(--width-child)/2);
-  padding: 10px;
-}
-*/
-
 
 main {
   padding: 10px;
@@ -52,258 +34,28 @@ main {
   margin-right: auto;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 50px;
-  align-items: center;
-  padding: 10px 20px;
+:root {
+  --overlay-color: rgba(0,0,0,0);
+  --overlay-blur: 0px;
+  --overlay-pointer-events: none;
+
+  --neon-blue-color1: #8fe3f9;
+  --neon-blue-color2: #439eff;
+  --neon-yellow-color1: #ffdb00;
+  --neon-yellow-color2: #bf9b30;
 }
 
-header a {
-  text-decoration: none;
-  color: inherit;
-}
-
-header a.logo {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-header nav {
-  display: flex;
-  gap: 15px;
-}
-
-
-/* https://css-tricks.com/how-to-create-neon-text-with-css/ */
-.neon-on {
-  font-family: Neon Robot, Arial, serif;
-  --neon-color: #439eff;
-  --neon-color2: #8fe3f9;
-  color: #fff;
-  text-shadow:
-      0 0 7px var(--neon-color2),
-      0 0 10px var(--neon-color2),
-      0 0 21px var(--neon-color2),
-      0 0 42px var(--neon-color),
-      0 0 82px var(--neon-color),
-      0 0 92px var(--neon-color),
-      0 0 102px var(--neon-color),
-      0 0 151px var(--neon-color);
-  animation: pulsate 1.5s infinite alternate;
-}
-
-.neon-off {
-  font-family: Neon Robot, Arial, serif;
-  color: #2b2a33;
-  text-shadow: none;
-}
-
-
-
-@keyframes pulsate {
-
-  0% {
-    --neon-color: #439eff;
-    --neon-color2: #8fe3f9;
-    text-shadow:
-      0 0 2px var(--neon-color2),
-      0 0 4px var(--neon-color2),
-      0 0 6px var(--neon-color2),
-      0 0 10px var(--neon-color),
-      0 0 45px var(--neon-color),
-      0 0 55px var(--neon-color),
-      0 0 70px var(--neon-color),
-      0 0 80px var(--neon-color);
-    }
-  100% {
-    --neon-color: #439eff;
-    --neon-color2: #8fe3f9;
-    text-shadow:
-      0 0 4px var(--neon-color2),
-      0 0 11px var(--neon-color2),
-      0 0 19px var(--neon-color2),
-      0 0 40px var(--neon-color),
-      0 0 80px var(--neon-color),
-      0 0 90px var(--neon-color),
-      0 0 100px var(--neon-color),
-      0 0 150px var(--neon-color);
-  }
-
-  /*
-    100% {
-      --neon-color: #439eff;
-      --neon-color2: #8fe3f9;
-      text-shadow:
-        0 0 4px var(--neon-color2),
-        0 0 11px var(--neon-color2),
-        0 0 19px var(--neon-color2),
-        0 0 40px var(--neon-color),
-        0 0 80px var(--neon-color),
-        0 0 90px var(--neon-color),
-        0 0 100px var(--neon-color),
-        0 0 150px var(--neon-color);
-    }
-  0% {
-    --neon-color: #439eff;
-    --neon-color2: #8fe3f9;
-      text-shadow:
-        0 0 4px var(--neon-color2),
-        0 0 10px var(--neon-color2),
-        0 0 18px var(--neon-color2),
-        0 0 38px var(--neon-color),
-        0 0 73px var(--neon-color),
-        0 0 80px var(--neon-color),
-        0 0 94px var(--neon-color),
-        0 0 140px var(--neon-color);
-    }
-  */
-}
-
-/* Flickering animation */
-@keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    --neon-color: #439eff;
-    --neon-color2: #8fe3f9;
-    text-shadow:
-      0 0 4px var(--neon-color2),
-      0 0 11px var(--neon-color2),
-      0 0 19px var(--neon-color2),
-      0 0 40px var(--neon-color),
-      0 0 80px var(--neon-color),
-      0 0 90px var(--neon-color),
-      0 0 100px var(--neon-color),
-      0 0 150px var(--neon-color);
-  }
-  20%, 24%, 55% {
-      text-shadow: none;
-  }
-}
-
-
-
-
-
-
-
-
-
-div.post {
-  color:#8fe3f9;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin-bottom: 30px;
-  /*border: 1px solid #0042FF;*/
-  border-radius: 5px;
-  padding: 15px 10px 10px 10px;
-  background-color: #2b2a33;
-  animation-duration: 400ms;
-  animation-name: translate;
-  animation-timing-function: ease-in-out;
-}
-
-
-
-
-
-@media screen and (min-width: 768px) {
-  div.post {
-    grid-template-columns: 0.9fr 1.1fr;
-  }
-}
-@keyframes translate {
-  0% {
-    transform: translateX(100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
-@keyframes alpha-fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-
-
-div.post div.image {
-  max-height: 300px;
-  display: block;
-  overflow: hidden;
-}
-div.post div.image img {
-  object-fit: contain;
-  object-position: center center;
+.overlay {
+  position: fixed;
   width: 100%;
-}
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
 
-div.post div.texts h2 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #8fe3f9;
-}
-div.post div.texts a {
-  text-decoration: none;
-  color: inherit;
-}
-div.post p.info {
-  margin: 6px 0;
-  color: #888;
-  font-size: .7rem;
-  font-weight: bold;
-  display: flex;
-  gap: 10px;
-}
-div.post p.info a.author {
-  color: #ffdb00;
-}
-div.post time {
-  color: #888;
-}
-div.post category {
-  color: #DC143C;
-}
-div.post p.summary {
-  margin: 10px 0;
-  line-height: 1.4rem;
-}
-
-
-
-div.login, div.signup {
-  max-width: 400px;
-  margin: 0 auto;
-  align-items: center;
-  text-align: center;
-  padding-bottom: 30px;
-  background-color: #2b2a33;
-  animation-duration: 400ms;
-  animation-name: translate;
-  animation-timing-function: ease-in-out;
-}
-form.login, form.signup {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.login input[type="text"],
-.login input[type="password"],
-.signup input[type="text"],
-.signup input[type="password"] {
-  max-width: 80%;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  color:#000;
+  pointer-events: var(--overlay-pointer-events);
+  background-color: var(--overlay-color);
+  backdrop-filter: blur(var(--overlay-blur));
 }
 
 
@@ -445,12 +197,6 @@ button {
   padding: .75rem 1.25rem;
 }
 
-
-form.login h1, form.signup h1 {
-  text-align: center;
-}
-
-
 div.create-page div.html-result {
   background-color: #333;
   display: inline-flex;
@@ -459,81 +205,5 @@ div.create-page div.html-result {
   padding: 15px 30px;
   border-radius: 5px;
   margin-top: 10px;
-  text-decoration: none;
-}
-
-
-div.post-page {
-  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #000;
-  background-color: #2b2a33;
-  padding: 15px 30px;
-  border-radius: 10px;
-  animation-duration: 200ms;
-  animation-name: alpha-fade-in;
-  animation-timing-function: ease-in-out;
-}
-
-div.post-page div.image {
-  max-height: 300px;
-  display: flex;
-  overflow: hidden;
-}
-div.post-page div.image img {
-  object-fit: cover;
-  object-position: center center;
-  width: 100%;
-}
-div.post-page a {
-  color:#439eff;
-  text-decoration: underline;
-}
-div.post-page h1 {
-  text-align: left;
-  font-size: 3rem;
-  letter-spacing: .03rem;
-  line-height: 3.125rem;
-  text-transform: uppercase;
-  color:#8fe3f9;
-}
-
-div.post-page div.signature-date {
-  font-weight: bold;
-  display: flex;
-  gap: 5px;
-  margin: 20px 10px 35px 0;
-  font-size: .9375rem;
-  line-height: 1.125rem;
-}
-div.post-page div.author {
-  color: #ffdb00;
-}
-div.post-page time {
-  color: #a7a7a7;
-}
-
-
-
-
-div.post-page div.content {
-  line-height: 1.6rem;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.125rem;
-  max-width: 680px;
-}
-div.edit-row {
-  text-align: center;
-  margin-bottom: 20px;
-}
-div.post-page a.edit-btn {
-  background-color: #333;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: #fff;
-  padding: 15px 30px;
-  border-radius: 5px;
   text-decoration: none;
 }
