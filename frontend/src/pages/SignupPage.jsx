@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { SchemaUserCreate } from "../utils/Schemas.js"
+import { SchemaUserCreate } from "../libs/Schemas.js"
 import Msg from "../components/Msg.jsx"
-import useOuterClick from "../components/useOuterClick.js"
+import useOuterClick from "../libs/useOuterClick.jsx"
+import "./LoginSignup.css";
 
 
 export default function SignupPage() {

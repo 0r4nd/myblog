@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef  } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { SchemaUserLogin } from "../utils/Schemas"
+import { SchemaUserLogin } from "../libs/Schemas.js"
 import Msg from "../components/Msg.jsx"
-import useOuterClick from "../components/useOuterClick.js"
+import useOuterClick from "../libs/useOuterClick.jsx"
+
+import "./LoginSignup.css";
 
 
 export default function LoginPage() {
@@ -43,7 +45,6 @@ export default function LoginPage() {
 
       // getters
       //var getObject = JSON.parse(sessionStorage.getItem("access_token"));
-
 
     } else {
       const result = await response.json();
