@@ -28,8 +28,8 @@ export default function LoginPage() {
   async function login(ev) {
     ev.preventDefault();
 
-    const response = await fetch('https://tensormaker.org/api/auth/login', {
-    //const response = await fetch('http://test.test/api/auth/login', {
+    //const response = await fetch('https://tensormaker.org/api/auth/login', {
+    const response = await fetch('http://test.test/api/auth/login', {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {'Content-Type': 'application/json'},

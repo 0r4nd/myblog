@@ -26,8 +26,8 @@ export default function IndexPage() {
     //    console.warn(categories);
     //  })
 
-    //fetch('http://test.test/api/blog/posts')
-    fetch('https://tensormaker.org/api/blog/posts')
+    fetch('http://test.test/api/blog/posts')
+    //fetch('https://tensormaker.org/api/blog/posts')
       .then(response => response.json())
       .then(posts => {
         setPosts(posts);

@@ -27,8 +27,8 @@ export default function SignupPage() {
   async function signup(ev, shake) {
     ev.preventDefault();
 
-    const response = await fetch('https://tensormaker.org/api/auth/signup', {
-    //const response = await fetch('http://test.test/api/auth/signup', {
+    //const response = await fetch('https://tensormaker.org/api/auth/signup', {
+    const response = await fetch('http://test.test/api/auth/signup', {
       method: 'POST',
       body: JSON.stringify({username, email, password}),
       headers: {'Content-Type': 'application/json'},
