@@ -14,9 +14,16 @@
 
 ## Usage
 
+add:
+```shell
+127.0.0.1 test.test
+127.0.0.1 www.test.test
+```
+into **C:\Windows\System32\drivers\etc\hosts** file. (run notepad as administrator)
+
 ```shell
 docker compose up -d --build
 ```
-- Website: [http://localhost:3000](http://localhost:3000)
-- Endpoints: [http://localhost:8000/docs](http://localhost:8000/docs)
-- Pgadmin: [http://localhost:8001](http://localhost:8001)
+- Website: [http://test.test:3000](http://test.test:3000)
+- Endpoints: [http://test.test:8000/docs](http://test.test:8000/docs)
+- Pgadmin: [http://test.test:8001](http://test.test:8001)
