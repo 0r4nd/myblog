@@ -24,6 +24,6 @@ into **C:\Windows\System32\drivers\etc\hosts** file. (run notepad as administrat
 ```shell
 docker compose up -d --build
 ```
-- Website: [test.test](test.test)
+- Website: [test.test](http://test.test)
 - Endpoints: [http://localhost:8000/docs](http://localhost:8000/docs)
 - Pgadmin: [http://localhost:8001](http://localhost:8001)
