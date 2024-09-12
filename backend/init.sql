@@ -88,27 +88,12 @@ CREATE TABLE comment (
 
 /* Users */
 INSERT INTO users (id, role, username, email, registered_at) VALUES
-(DEFAULT, 'administrator', 'Orand', 'orand@admin.com', DEFAULT);
+(DEFAULT, 'administrator', 'admin', 'admin@admin.com', DEFAULT);
 -- (DEFAULT, 'administrator', 'Jon Doe', 'jondoe@admin.com', DEFAULT);
 
 
 /* Posts */
-INSERT INTO posts (id, user_id, parent_id, meta_title, title, cover, category, summary, content, is_published, created_at, updated_at, published_at) VALUES
-('f78F785915E86d34f1D7074C06F7F58b',
-1,
-NULL,
-'meta_title',
-'Premier blog, premier article Nouvel eldorado, la Data! 📊🤖',
-'robots.webp',
-'Uncategorized',
-'Depuis quelques années déjà la data-science m’intéresse beaucoup, ce blog a été conçu afin de regrouper mes travaux et les partager au 🌍 entier.',
-'<p>Après avoir longtemps été développeur de jeux en js, j’ai décidé de bifurquer vers un domaine dont absolument <strong>tout le monde</strong> parle <strong>tout le temps</strong>.</p><p><br></p><p>Sur ce blog, je mettrais en ligne quelques projets perso sur lesquels j’ai travaillé. Ils seront exposés sous forme d’articles rédigés. Il y aura aussi des tutos et des API, nous parlerons donc pas mal de tensorflow, de scrapping, de data augmentation, mais également d’électronique orientée "maker" avec arduino, ESP32, raspberry, etc.</p><p><br></p><p>Cela permettra de non seulement garder une trace de mes travaux "data" en les centralisant dans un endroit accessible, mais également de rédiger des articles utiles à ceux qui souhaitent s’initier à ce monde là.</p><p><br></p><p><br></p><p><strong><u>Pourquoi ne pas publier sur Medium ou un autre site de ce genre là </u></strong><u><span class="ql-emojiblot" data-name="interrobang">﻿<span contenteditable="false"><span class="ap ap-interrobang">⁉</span></span>﻿</span></u></p><p><br></p><p>L’un n’empêche pas l’autre! <span class="ql-emojiblot" data-name="rocket">﻿<span contenteditable="false"><span class="ap ap-rocket">🚀</span></span>﻿</span></p><p><br></p><p>N’ayant pas forcément l’opportunité d’utiliser docker-compose dans mes projets perso, je voulais profiter du développement de ce blog pour me contraindre à un stack technique très utilisé dans le monde de la data.</p><p>Cela permet de m’exercer, de faire un projet utile, d’augmenter ma présence numérique famélique, et au final cela me procure le thème du premier article technique du site!</p><p><br></p><p>Sans parler du fait qu’avec mon propre site je peux directement mettre mes API sur le VPS sur lequel le site est hébergé.</p><p><br></p><p><br></p><p><strong><u>Bon, quel est donc ce fameux stack technique "data" alors </u></strong><u><span class="ql-emojiblot" data-name="interrobang">﻿<span contenteditable="false"><span class="ap ap-interrobang">⁉</span></span>﻿</span></u></p><p><br></p><p><u>Pour ce blog plusieurs services sont utilisés:</u></p><ul><li>(<strong>Uvicorn<span class="ql-emojiblot" data-name="unicorn_face">﻿<span contenteditable="false"><span class="ap ap-unicorn_face">🦄</span></span>﻿</span></strong>) <strong>+</strong> (<strong>FastAPI<span class="ql-emojiblot" data-name="zap">﻿<span contenteditable="false"><span class="ap ap-zap">⚡</span></span>﻿</span></strong>) pour l’API</li><li>(<strong>Postgres <span class="ql-emojiblot" data-name="elephant">﻿<span contenteditable="false"><span class="ap ap-elephant">🐘</span></span>﻿</span></strong>)<strong> +</strong> (<strong>Psycopg3</strong> 🖧) pour la DB</li><li>(<strong>React</strong><span style="color: rgb(206, 145, 120);">⚛</span>) pour l’UI</li><li>(<strong>Nginx</strong>🇳) pour le reverse proxy</li></ul><p><br></p><p>Au final le site utilise au total 5 services. (il y a en plus un service <strong>pgadmin</strong> pour la gestion des tables)</p><p><br></p><p>Entre le back et le front, ça m’aura bien pris deux bonnes semaines de dev, et ce fut aussi éprouvant qu’instructif.</p><p>Déjà la stack est beaucoup moins optimale que le combo classique MERN (MongoDB, Express, React, Node), j’ai du retapper pas mal de code JS en Python (nottement pour le double check sur les username/password), et en plus je me suis forcé à utiliser du SQL raw alors qu’apparement avec fastAPI tout le monde ne jure que par l’ORM. (mais je comprend totalement l’intéret hein, je me suis juste forcé 😉)</p><p><br></p><p>Le site n’est pas terminé à 100%, les JWT sont fait mais l’authentification sécurisée par <span style="color: rgb(78, 201, 176);">OAuth2 </span>n’est pas totalement terminée, de plus on ne peut pas laisser de commentaires. L’inscription fonctionne, mais il n’y a pas de service d’envoi de mail de vérification.</p><p>Bref il reste quelques petit ajouts a faire. Mais dans l’ensemble pour un site "from scratch" je suis assez content du résultat.</p><p><br></p><p>La partie back-end de ce blog sera l’objet du prochain article.<p><a href="https://github.com/0r4nd/myblog" rel="noopener noreferrer" target="_blank">code source sur le github</a></p></p><p><br></p><p><u>à bientôt!</u></p><p><br></p>',
-TRUE,
-DEFAULT,
-DEFAULT,
-DEFAULT);
 
-/*
 INSERT INTO posts (id, user_id, parent_id, meta_title, title, cover, category, summary, content, is_published, created_at, updated_at, published_at) VALUES
 ('52156DfF2D52Db1FAcE9777b5653f9C9',
 2,
@@ -260,7 +245,6 @@ DEFAULT,
 DEFAULT);
 
 
- */
 
 /* Categories */
 INSERT INTO category (id, parent_id, content) VALUES

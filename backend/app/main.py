@@ -55,19 +55,30 @@ app.add_middleware(
 )
 
 
+
+##################### api #####################
+
 @app.get('/')
-async def read_root():
+async def get_root():
     #logger.debug(DataBase.CONFIG.DATABASE_URL)
     #logger.debug(raw_sql_query("SELECT * FROM posts;"))
     return Response("Server is running.")
 
+@app.get('/api')
+async def get_api():
+    return Response("API Server is running.")
 
-@app.get('/blog/api')
-async def blog_api():
+
+
+
+##################### blog #####################
+
+@app.get('/api/blog')
+async def get_api_blog():
     return Response("Blog API Server is running.")
 
-@app.get('/blog/api/posts')
-async def get_blog_api_posts():
+@app.get('/api/blog/posts')
+async def get_api_blog_posts():
     query = """
     SELECT posts.id, title, cover, category, summary, published_at, username
     FROM posts
@@ -81,8 +92,8 @@ async def get_blog_api_posts():
         raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
     return result
 
-@app.get('/blog/api/posts/{id}')
-async def get_blog_api_posts_id(id:str):
+@app.get('/api/blog/posts/{id}')
+async def get_api_blog_posts_id(id:str):
     query = """
     SELECT posts.id, title, cover, category, summary, content, published_at, updated_at, username
     FROM posts
@@ -96,12 +107,27 @@ async def get_blog_api_posts_id(id:str):
         raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
     return result
 
+@app.get('/api/blog/categories/{user_id}')
+async def get_api_blog_categories_id(user_id:str):
+    query = """
+    SELECT ARRAY(
+	    SELECT title FROM post_category
+	    LEFT JOIN category ON (category.id = post_category.category_id)
+	    WHERE post_id = %s
+    )
+    """
+    try:
+        result = db.fetchone(query, user_id)[0]
+    except:
+        raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
+    return result
 
 
 
 
 
 
+##################### auth #####################
 
 def get_user_in_db(auth, username, password):
     errors = {}
@@ -122,11 +148,12 @@ def get_user_in_db(auth, username, password):
 
     return user
 
+@app.get('/api/auth')
+async def get_api_auth():
+    return Response("Auth API Server is running.")
 
-
-
-@app.post('/login')
-async def post_login(schema: SchemaUserLogin, response: Response):
+@app.post('/api/auth/login')
+async def post_api_auth_login(schema: SchemaUserLogin, response: Response):
     errors = {}
 
     if not schema.is_valid_username():
@@ -162,9 +189,8 @@ async def post_login(schema: SchemaUserLogin, response: Response):
         #"refresh_token": refresh_token,
     }
 
-
-@app.post('/signup')
-async def post_signup(schema: SchemaUserCreate):
+@app.post('/api/auth/signup')
+async def post_api_auth_signup(schema: SchemaUserCreate):
     errors = {}
     if not schema.is_valid_username():
         errors["username"] = schema.error
@@ -192,53 +218,3 @@ async def post_signup(schema: SchemaUserCreate):
             auth.get_password_hash(schema.password),
             auth.create_activation_key())
     return schema
-
-
-@app.get('/blog/posts', status_code = status.HTTP_200_OK)
-async def get_posts():
-    query = """
-    SELECT posts.id, title, cover, category, summary, published_at, username
-    FROM posts
-    LEFT JOIN users ON (users.id = posts.user_id)
-    WHERE is_published = true
-    ORDER BY published_at DESC
-    """
-    try:
-        result = db.get(query)
-    except:
-        raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
-    return result
-
-
-
-@app.get('/blog/posts/{id}')
-async def get_posts_id(id:str):
-    query = """
-    SELECT posts.id, title, cover, category, summary, content, published_at, updated_at, username
-    FROM posts
-    LEFT JOIN users ON (users.id = posts.user_id)
-    WHERE posts.id = %s
-    ORDER BY published_at DESC
-    """
-    try:
-        result = db.getone(query, id)
-    except:
-        raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
-
-    return result
-
-
-@app.get('/blog/categories/{user_id}')
-async def get_categories_id(user_id:str):
-    query = """
-    SELECT ARRAY(
-	    SELECT title FROM post_category
-	    LEFT JOIN category ON (category.id = post_category.category_id)
-	    WHERE post_id = %s
-    )
-    """
-    try:
-        result = db.fetchone(query, user_id)[0]
-    except:
-        raise HTTPException(status_code=500, detail={"500":"Internal Server Error"})
-    return result
