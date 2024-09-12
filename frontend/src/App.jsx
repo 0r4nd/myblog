@@ -8,7 +8,6 @@ import SignupPage from './pages/SignupPage.jsx';
 import CreatePost from './pages/CreatePost.jsx';
 import PostPage from './pages/PostPage.jsx';
 import ToolPage from './pages/ToolPage.jsx';
-import APIPage from './pages/APIPage.jsx';
 
 import { Navigate } from 'react-router-dom';
 
@@ -21,7 +20,6 @@ function App() {
         <Route path='/' element = { <Navigate to="/blog" /> }/>
         <Route path='/blog' element = { <HomePage /> }/>
         <Route path='/tools' element = { <ToolPage /> }/>
-        <Route path='/api' element = { <APIPage /> }/>
 
         <Route path='/login' element = { <LoginPage /> }/>
         <Route path='/signup' element = { <SignupPage /> }/>
