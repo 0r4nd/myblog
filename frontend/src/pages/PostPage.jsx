@@ -47,10 +47,8 @@ export default function PostPage() {
 
   useEffect(() => {
 
-    //fetch(`http://localhost:8000/blog/posts/${id}`)
-    fetch(`http://test.test/blog/api/posts/${id}`)
-    //fetch(`http://localhost:8000/blog/posts/${id}`)
-    //fetch(`https://tensormaker.org/blog/api/posts/${id}`)
+    //fetch(`http://test.test/api/blog/posts/${id}`)
+    fetch(`https://tensormaker.org/api/blog/posts/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);

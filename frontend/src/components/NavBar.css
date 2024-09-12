@@ -20,6 +20,7 @@
   /* border: solid 1px #fff; */
 }
 
+
 .navMenu {
   display: flex;
   justify-content: space-between;
@@ -30,16 +31,25 @@
   /* border: solid 1px #fff; */
 
 }
-
+/* navButton */
 .navLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   font-size: 1.5rem;
+  outline: .125rem solid hsla(0,0%,100%,.2);
+  border-radius: 2.25rem;
+  width: 6.5rem;
+  height: 2.3rem;
+  padding-bottom: 0.2rem;
   color: #2b2a33;
 }
 .navLink:hover {
-  color: #439eff;
+  color: #ddd;
+  outline: .125rem solid #888;
+  transform: scale(1.05);
 }
-
 
 
 /* https://css-tricks.com/how-to-create-neon-text-with-css/ */
@@ -171,7 +181,7 @@
   }
 }
 
-@media screen and (width <= 630px) {
+@media screen and (width <= 700px) {
   .hamburger {
     display: block;
     cursor: pointer;
@@ -216,12 +226,10 @@
     border: solid 1px #888;
     z-index: 2;
   }
-
   .navMenu.active {
     left: 66%;
     display: block;
   }
-
   .navMenu li {
     margin: 16px 0;
   }

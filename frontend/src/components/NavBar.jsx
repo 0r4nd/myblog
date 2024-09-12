@@ -62,9 +62,6 @@ export default function Navbar() {
           <Link to='tools' className="navLink">Tools</Link>
         </li>
         <li onClick={removeActive}>
-          <Link to='api' className="navLink">API</Link>
-        </li>
-        <li onClick={removeActive}>
           <Link to='/login' className="navLink">Login</Link>
         </li>
       </ul>

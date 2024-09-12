@@ -9,7 +9,6 @@
 
 .header a {
   text-decoration: none;
-  color: inherit;
 }
 
 @media screen and (max-width: 768px) {

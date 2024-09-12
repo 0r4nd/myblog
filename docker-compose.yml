@@ -72,9 +72,8 @@ services:
     image: nginx:1.27-alpine
     restart: unless-stopped
     volumes:
-      - ./proxy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro # old
-      #- ./proxy/nginx/default.conf:/etc/nginx/templates/default.conf.template
-      #- ./proxy/nginx/log:/var/log/nginx
+      #- ./proxy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./proxy/nginx/templates/default.conf:/etc/nginx/templates/default.conf.template
       #- ./proxy/ssl/:/etc/ssl/:ro # unused for now
       #- ./static:/var/www/static
     ports:
@@ -84,7 +83,6 @@ services:
       - frontend
     environment:
         # env for nginx: https://stackoverflow.com/a/62844707
-        #NGINX_ENVSUBST_TEMPLATE_SUFFIX: ".conf"
         API_URL: ${API_URL}
 
 
