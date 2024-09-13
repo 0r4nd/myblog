@@ -44,6 +44,7 @@ export default function SignupPage() {
     }
   }
 
+
   function localCheck(ev, shake) {
     ev.preventDefault();
     const schema = new SchemaUserCreate(username, email, password, password2);
