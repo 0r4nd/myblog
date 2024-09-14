@@ -75,7 +75,7 @@ services:
       #- ./proxy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./proxy/nginx/templates/default.conf:/etc/nginx/templates/default.conf.template
       #- ./proxy/ssl/:/etc/ssl/:ro # unused for now
-      #- ./static:/var/www/static
+      - ./uploads:/var/uploads
     ports:
       - 80:80   # http
       - 443:443 # https
