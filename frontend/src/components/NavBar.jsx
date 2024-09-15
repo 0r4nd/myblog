@@ -52,7 +52,7 @@ export default function Navbar() {
       {/* TODO: à finir */}
       <Link onClick={() => console.log(window.location.pathname)}/>
 
-          <Link to="/" className="logo" onClick={() =>setClass("logo", "neon-blue")}>
+          <Link to="/blog" className="logo" onClick={() =>setClass("logo", "neon-blue")}>
           <h2 id="logo" className="neon-blue">TensorMaker</h2>
         </Link>
 
