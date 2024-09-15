@@ -36,21 +36,17 @@ db = DataBase()
 auth = Auth()
 
 
-origins = ["*"]
-#origins = [
-#    "http://localhost:3000",
-#    "http://127.0.0.1:3000",
-#    "https://localhost:3000",
-#    "https://127.0.0.1:3000",
-#    os.getenv("API_HOST")+":3000",
-#    "https://"+os.getenv("API_HOST")+":3000",
-#]
+#origins = ["*"]
+origins = [
+    os.getenv("API_PROTOCOL") + "://" + os.getenv("API_DOMAIN"),
+    os.getenv("API_PROTOCOL") + "://www." + os.getenv("API_DOMAIN")
+]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"]
 )
 
