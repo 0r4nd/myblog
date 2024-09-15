@@ -8,8 +8,7 @@ import SignupPage from './pages/SignupPage.jsx';
 import CreatePost from './pages/CreatePost.jsx';
 import PostPage from './pages/PostPage.jsx';
 import ToolPage from './pages/ToolPage.jsx';
-
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 
 function App() {
 
@@ -17,7 +16,7 @@ function App() {
     <Routes>
       <Route path='/' element = {<Layout />}>
         {/* <Route index element = { <HomePage /> }/> */}
-        <Route path='/' element = { <Navigate to="/blog" /> }/>
+        {/* <Route path='/' element = { <Navigate to="/blog" /> }/> */}
         <Route path='/blog' element = { <HomePage /> }/>
         <Route path='/tools' element = { <ToolPage /> }/>
 
