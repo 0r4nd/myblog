@@ -20,7 +20,7 @@ export default function Post({id, title, cover, summary, published_at, username,
     <div className="post">
       <div className="image">
         <Link to={`/blog/posts/${id}`}>
-          <img src={process.env.PUBLIC_URL + "/blog/posts/images/" + cover} alt="" />
+          <img src={process.env.PUBLIC_URL + "/uploads/blog/posts/images/" + cover} alt="" />
         </Link>
       </div>
 

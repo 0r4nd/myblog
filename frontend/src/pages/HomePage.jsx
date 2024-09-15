@@ -6,6 +6,7 @@ import Post from "../components/Post.jsx";
 export default function IndexPage() {
   const [posts,setPosts] = useState([]);
   const [categories,setCategories] = useState([]);
+  const URL = `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_DOMAIN}`;
 
   useEffect(() => {
 
@@ -26,14 +27,16 @@ export default function IndexPage() {
     //    console.warn(categories);
     //  })
 
-    fetch('http://test.test/api/blog/posts')
-    //fetch('https://tensormaker.org/api/blog/posts')
+    fetch(URL + '/api/blog/posts')
       .then(response => response.json())
       .then(posts => {
         setPosts(posts);
       })
 
   }, []);
+
+
+
 
 
   return (

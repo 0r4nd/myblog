@@ -26,9 +26,9 @@ export default function SignupPage() {
 
   async function signup(ev, shake) {
     ev.preventDefault();
+    const URL = `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_DOMAIN}`;
 
-    //const response = await fetch('https://tensormaker.org/api/auth/signup', {
-    const response = await fetch('http://test.test/api/auth/signup', {
+    const response = await fetch(URL+'/api/auth/signup', {
       method: 'POST',
       body: JSON.stringify({username, email, password}),
       headers: {'Content-Type': 'application/json'},
@@ -123,25 +123,3 @@ export default function SignupPage() {
 
   );
 }
-
-
-
-/*
-
-    <div className="register article-card-bottom">
-      Already have an account? <Link to="/login">Log in</Link>
-    </div>
-
-
-
-<>
-{Object.values(success).map(value => (
-  <div className="success">✔️ {value}</div>
-))}
-</>
-<>
-{Object.values(error).map(value => (
-  <Title className="error">❌ {value}</Title>
-))}
-</>
-*/

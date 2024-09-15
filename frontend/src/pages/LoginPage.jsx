@@ -27,9 +27,9 @@ export default function LoginPage() {
 
   async function login(ev) {
     ev.preventDefault();
+    const URL = `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_DOMAIN}`;
 
-    //const response = await fetch('https://tensormaker.org/api/auth/login', {
-    const response = await fetch('http://test.test/api/auth/login', {
+    const response = await fetch(URL+'/api/auth/login', {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {'Content-Type': 'application/json'},
