@@ -11,44 +11,14 @@ const capitalize = s => s[0].toUpperCase() + s.slice(1);
 
 
 
-/* async function getPost() {
-
-  //fetch('http://localhost:8000/blog/posts')
-  const response = await fetch('http://test.test/blog/api/posts/${id}')
-  //fetch(`http://localhost:8000/blog/posts/${id}`)
-  //fetch('https://tensormaker.org/blog/api/posts/${id}')
-    .then(response => {
-      response.json().then(postInfo => {
-        setPostInfo(postInfo);
-      });
-    });
-
-    if (response.status === 200) {
-      const result = await response.json();
-      resetMsg();
-      updateSuccessMsg(["Success! a mail has been sent!"], shake);
-    } else {
-      const result = await response.json();
-      resetMsg();
-      updateErrorMsg(result.detail, shake);
-    }
-
-
-} */
-
-
-
-
-
 export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);
   const {id} = useParams();
-
+  const URL = `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_DOMAIN}`;
 
   useEffect(() => {
 
-    //fetch(`http://test.test/api/blog/posts/${id}`)
-    fetch(`https://tensormaker.org/api/blog/posts/${id}`)
+    fetch(`${URL}/api/blog/posts/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
@@ -56,10 +26,6 @@ export default function PostPage() {
       });
 
   }, []);
-
-
-
-  const capitalize = s => s[0].toUpperCase() + s.slice(1);
 
 
   // Title neon off
@@ -81,27 +47,18 @@ export default function PostPage() {
     to: [".",".",".",".","."]
   };
 
-  // <div className="category">{postInfo.category}</div>
-
   return (
     <div className="post-page">
       <h1>{postInfo.title}</h1>
 
-{/*       <div className="signature-date">
-        <div className="author">par {capitalize(postInfo.username)}</div>
+      <p className="info">
+        <Link to="." className="author">{postInfo.username}</Link>
         <time>{"Le " + format(new Date(postInfo.published_at), 'dd/MM/yyyy à HH:mm')}</time>
         <ArrayToLinkTags {...category_layout}/>
-      </div> */}
-
-        <p className="info">
-          <Link to="." className="author">{postInfo.username}</Link>
-          <time>{"Le " + format(new Date(postInfo.published_at), 'dd/MM/yyyy à HH:mm')}</time>
-          <ArrayToLinkTags {...category_layout}/>
-        </p>
-
+      </p>
 
       <div className="image">
-        <img src={process.env.PUBLIC_URL + "/blog/posts/images/" + postInfo.cover} alt="" />
+        <img src={process.env.PUBLIC_URL + "/uploads/blog/posts/images/" + postInfo.cover} alt="" />
       </div>
 
       <div className="content">
