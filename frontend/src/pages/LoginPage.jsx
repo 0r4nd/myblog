@@ -27,7 +27,7 @@ export default function LoginPage() {
 
   async function login(ev) {
     ev.preventDefault();
-    const URL = `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_DOMAIN}`;
+    const URL = `${process.env.REACT_APP_SERVER_PROTOCOL}://${process.env.REACT_APP_SERVER_DOMAIN}`;
 
     const response = await fetch(URL+'/api/auth/login', {
       method: 'POST',
