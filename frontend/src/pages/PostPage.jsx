@@ -14,7 +14,7 @@ const capitalize = s => s[0].toUpperCase() + s.slice(1);
 export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);
   const {id} = useParams();
-  const URL = `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_DOMAIN}`;
+  const URL = `${process.env.REACT_APP_SERVER_PROTOCOL}://${process.env.REACT_APP_SERVER_DOMAIN}`;
 
   useEffect(() => {
 
