@@ -6,7 +6,7 @@ import Post from "../components/Post.jsx";
 export default function IndexPage() {
   const [posts,setPosts] = useState([]);
   const [categories,setCategories] = useState([]);
-  const URL = `${process.env.REACT_APP_API_PROTOCOL}://${process.env.REACT_APP_API_DOMAIN}`;
+  const URL = `${process.env.REACT_APP_SERVER_PROTOCOL}://${process.env.REACT_APP_SERVER_DOMAIN}`;
 
   useEffect(() => {
 
